@@ -17,9 +17,17 @@ This app is built on top of the [docker-py](https://docker-py.readthedocs.org) p
 
  4. There is **only one** available container, and hance only one unique container id. However, the given name is not fixed and might get different values each time the container is being started.
  
+ 5. The container's image has a very simple functionaliy - it hangs and waits for 60 seconds and then shuts down.
+
  
 ## How to run?
 1. Make sure you have [boot2docker]() installed locally on your Mac and that you have configured the following https://docker-py.readthedocs.org/en/stable/boot2docker/.
 2. Clone the repository.
 3. Run `pip install -r requirements.txt -U` for installing all the dependencies.
 4. Run `python app.py` (the service default port is 8081).
+
+
+## Running tests
+All you need to do is run the following:
+
+`$ py.test tests.py --verbose`
