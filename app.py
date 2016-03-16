@@ -2,7 +2,7 @@ from flask import Flask, request
 from docker import Client
 from docker.utils import kwargs_from_env
 
-app = Flask(__name__)
+flask_app = Flask(__name__)
 
 # initialising the docker client assuming it's running on mac OS X
 kwargs = kwargs_from_env()
@@ -14,7 +14,7 @@ container = docker_client.create_container(
 container_id = container.get('Id')  # we have only one conatiner
 
 
-@app.route('/start', methods=['GET'])
+@flask_app.route('/start', methods=['GET'])
 def start_docker():
     name = request.args.get('name')
     container_name = 'DEFAULT_NAME' if (name is None) else name
@@ -26,7 +26,7 @@ def start_docker():
     return "container with id {} is already running".format(container_id)
 
 
-@app.route('/stop', methods=['GET'])
+@flask_app.route('/stop', methods=['GET'])
 def stop_docker():
     status = get_container_status()
     if (status is not None):
@@ -35,7 +35,7 @@ def stop_docker():
     return "container with id {} is already not running".format(container_id)
 
 
-@app.route('/status', methods=['GET'])
+@flask_app.route('/status', methods=['GET'])
 def get_status_docker():
     if (get_container_status() is None):
         return "Container is currently not running. Please hit /start API."
@@ -54,4 +54,4 @@ def get_container_status():
     return None
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=8081)
+    flask_app.run(debug=True, host="0.0.0.0", port=8081)
