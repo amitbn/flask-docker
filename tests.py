@@ -3,7 +3,6 @@
 
 from flask.ext.testing import TestCase
 from app import flask_app
-from time import sleep
 
 class TestFlaskDocker(TestCase):
 
@@ -38,7 +37,7 @@ class TestFlaskDocker(TestCase):
         resp = self.client.get('/start')
         assert resp.status_code == 200
         assert 'already running' in resp.data
-        
+
         resp = self.client.get('/stop')
         assert resp.status_code == 200
 

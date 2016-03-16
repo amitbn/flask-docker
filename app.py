@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from flask import Flask, request
 from docker import Client
 from docker.utils import kwargs_from_env
