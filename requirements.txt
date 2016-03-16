@@ -1,0 +1,3 @@
+# Flask and extensions
+flask==0.10.1
+docker-py==1.7.2
