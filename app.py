@@ -19,7 +19,6 @@ def start_docker():
     name = request.args.get('name')
     container_name = 'DEFAULT_NAME' if (name is None) else name
     status = get_container_status()
-    print status
     if (status is None):
         docker_client.start(container_id)
         return "started docker container with id {} and name {}".format(
